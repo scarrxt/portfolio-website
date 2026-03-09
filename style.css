@@ -381,7 +381,7 @@
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border); padding: 2rem;
-      text-align: center; font-family: var(--mono); font-size: .75rem; color: var(--muted);
+      text-align: center; font-family: var(--mono); font-size: 0.83rem; color: var(--muted);
     }
     footer span { color: var(--cyan); }
 
