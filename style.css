@@ -103,19 +103,33 @@
 
     /* MOBILE NAV */
     .mobile-nav {
-      display: none; position: fixed; top: 62px; left: 0; right: 0;
+      position: fixed; top: 62px; left: 0; right: 0;
       background: rgba(11,15,25,.97); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border); z-index: 999;
       padding: 1rem 0; opacity: 0; transform: translateY(-10px);
-      transition: var(--ease);
+      max-height: 0; overflow: hidden; pointer-events: none;
+      transition: opacity var(--ease), transform var(--ease), max-height var(--ease);
     }
-    .mobile-nav.open { display: block; opacity: 1; transform: translateY(0); }
+    .mobile-nav.open {
+      opacity: 1; transform: translateY(0);
+      max-height: 360px; pointer-events: auto;
+    }
     .mobile-nav a {
       display: block; padding: .9rem 2rem;
       font-family: var(--mono); font-size: .85rem; color: var(--muted);
       text-transform: uppercase; letter-spacing: .1em;
-      border-left: 2px solid transparent; transition: var(--ease);
+      border-left: 2px solid transparent;
+      opacity: 0; transform: translateY(-6px);
+      transition: opacity .35s ease, transform .35s ease, color var(--ease), background var(--ease), border-color var(--ease);
+      transition-delay: 0s;
     }
+    .mobile-nav.open a { opacity: 1; transform: translateY(0); transition-delay: var(--delay); }
+    .mobile-nav a:nth-child(1) { --delay: .05s; }
+    .mobile-nav a:nth-child(2) { --delay: .1s; }
+    .mobile-nav a:nth-child(3) { --delay: .15s; }
+    .mobile-nav a:nth-child(4) { --delay: .2s; }
+    .mobile-nav a:nth-child(5) { --delay: .25s; }
+    .mobile-nav a:nth-child(6) { --delay: .3s; }
     .mobile-nav a:hover { color: var(--cyan); border-color: var(--cyan); background: var(--cyan-dim); }
 
     /* SECTION */
@@ -401,4 +415,4 @@
       .about-stats   { grid-template-columns: 1fr 1fr; }
       .hero-heading  { font-size: 2.2rem; }
     }
-    @media (max-width: 400px) { .skills-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 400px) { .skills-grid { grid-template-columns: repeat(2,1fr); } }
